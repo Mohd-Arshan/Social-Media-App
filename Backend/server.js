@@ -25,7 +25,7 @@ const server = http.createServer(App);
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000', // Replace with your frontend URL
+    origin: 'http://localhost:5173', // Replace with your frontend URL
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -33,7 +33,13 @@ const io = new Server(server, {
 
 
 // Middleware
-App.use(cors());
+App.use(
+  cors({
+    origin: 'http://localhost:5173', // Replace with your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+);
 App.use(express.json());
 App.use(cookieParser());
 
