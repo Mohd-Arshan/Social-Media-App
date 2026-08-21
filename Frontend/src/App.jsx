@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Interface from "./pages/Interface";
+import Profile from "./pages/Profile";
 
 // Components
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -35,6 +36,12 @@ function App() {
                         </ProtectedRoute>
                     } 
                 />
+                
+                <Route 
+                    path="profile/:id"
+                    element={<Profile/>}
+                />
+
             </Routes>
         </BrowserRouter>
         </AuthProvider>

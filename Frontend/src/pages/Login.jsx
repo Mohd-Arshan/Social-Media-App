@@ -54,6 +54,7 @@ function Login() {
                         value={form.email}
                         onChange={handleChange}
                         placeholder="Email"
+                        autoComplete="new-password"
                     />
                     <br />
                     <label htmlFor="password">Password:</label>
@@ -63,6 +64,7 @@ function Login() {
                         value={form.password}
                         onChange={handleChange}
                         placeholder="Password"
+                        autoComplete="new-password"
                     />
                     <button type="submit" disabled={loading}>
                         {loading ? "Logging in..." : "Login"}
