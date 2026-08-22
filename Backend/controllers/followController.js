@@ -3,7 +3,7 @@ const { getAuthUserAndTargetUser } = require('../service/getFollowService');
 
 const followUser = async (req, res) => {
   try {
-    const { userIdToFollow } = req.body;
+    const { userToFollowId: userIdToFollow } = req.body;
     const currentUserId = req.user.id;
 
     if (currentUserId === userIdToFollow) {
@@ -37,7 +37,7 @@ const followUser = async (req, res) => {
 const unfollowUser = async (req,res) =>{
     try {
 
-        const {userIdToUnfollow} = req.body;
+        const {userToFollowId: userIdToUnfollow} = req.body;
         const currentUserId = req.user.id;
 
         const users = await getAuthUserAndTargetUser(currentUserId, userIdToUnfollow, req, res);

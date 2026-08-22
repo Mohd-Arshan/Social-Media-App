@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Post = require('../models/post');
 const User = require('../models/user');
 
-const likePost = async (res, req) => {
+const likePost = async (req, res) => {
 
     try {
-        const postId= req.params;
+        const {postId} = req.body;
         const userId = req.user.id;
 
         const post = await Post.findById(postId);
@@ -27,9 +27,9 @@ const likePost = async (res, req) => {
     }
 }
 
-const unlikePost = async(res, req) => {
+const unlikePost = async(req, res) => {
     try {
-        const postId= req.params;
+        const {postId} = req.body;
         const userId = req.user.id;
 
         const post = await Post.findById(postId);

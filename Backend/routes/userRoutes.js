@@ -2,10 +2,11 @@ const express = require('express');
 
 const protect = require('../middleware/authMiddleware');
 
-const { getProfile } = require('../controllers/userController');
+const { getProfileById, getRecommendedProfiles } = require('../controllers/userController');
 
 const router = express.Router();
 
-router.get('/profile', protect, getProfile);
+router.get('/profile/:id', getProfileById);
+router.get('/recommend-profiles', protect, getRecommendedProfiles);
 
 module.exports = router;

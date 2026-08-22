@@ -15,6 +15,7 @@ const userRoutes = require('./routes/userRoutes');
 const followRoutes = require('./routes/followRoutes');
 const postRoutes = require('./routes/postRoutes');
 const likeRoutes = require('./routes/likeRoutes');
+const conversationRoutes = require('./routes/conversationRoutes');
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ const server = http.createServer(App);
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000', // Replace with your frontend URL
+    origin: 'http://localhost:5173', // Replace with your frontend URL
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -33,7 +34,13 @@ const io = new Server(server, {
 
 
 // Middleware
-App.use(cors());
+App.use(
+  cors({
+    origin: 'http://localhost:5173', // Replace with your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+);
 App.use(express.json());
 App.use(cookieParser());
 
@@ -50,6 +57,7 @@ App.use('/api/user', userRoutes);
 App.use('/api/follow', followRoutes);
 App.use('/api/post', postRoutes);
 App.use('/api/like', likeRoutes);
+App.use('/api/conversation', conversationRoutes);
 
 
 const PORT = process.env.PORT || 5000;

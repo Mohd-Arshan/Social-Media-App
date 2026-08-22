@@ -4,8 +4,8 @@ const protect = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/like', protect, likePost);
-router.post('/like', protect, unlikePost);
+router.post('/likeById', protect, likePost);
+router.post('/unlikeById', protect, unlikePost);
 
 module.exports = router;
 

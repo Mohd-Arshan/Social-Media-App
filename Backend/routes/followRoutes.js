@@ -4,7 +4,7 @@ const protect = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post("/follow", protect, followUser);
-router.post("/unfollow", protect, unfollowUser);
+router.post("/followById", protect, followUser);
+router.post("/unfollowById", protect, unfollowUser);
 
 module.exports = router;
