@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
+const Conversation = require('./conversation');
 
 const messageSchema = new mongoose.Schema({
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        auto: true,
+    },
     roomId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Conversation",
         required: true,
     },
     sender: {

@@ -15,6 +15,7 @@ const userRoutes = require('./routes/userRoutes');
 const followRoutes = require('./routes/followRoutes');
 const postRoutes = require('./routes/postRoutes');
 const likeRoutes = require('./routes/likeRoutes');
+const conversationRoutes = require('./routes/conversationRoutes');
 
 dotenv.config();
 
@@ -56,6 +57,7 @@ App.use('/api/user', userRoutes);
 App.use('/api/follow', followRoutes);
 App.use('/api/post', postRoutes);
 App.use('/api/like', likeRoutes);
+App.use('/api/conversation', conversationRoutes);
 
 
 const PORT = process.env.PORT || 5000;

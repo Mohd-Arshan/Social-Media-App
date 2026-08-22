@@ -6,12 +6,14 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Interface from "./pages/Interface";
 import Profile from "./pages/Profile";
+import ChatPage from "./pages/ChatPage";
 
 // Components
 import ProtectedRoute from "./components/ProtectedRoute";
 
 //context
 import { AuthProvider } from "./context/AuthContext";
+import { SocketProvider } from "./context/SocketContext";
 
 function App() {
     return (
@@ -40,6 +42,17 @@ function App() {
                 <Route 
                     path="profile/:id"
                     element={<Profile/>}
+                />
+
+                <Route 
+                    path="chat/:senderId"
+                    element={
+                        <ProtectedRoute>
+                            <SocketProvider>
+                                <ChatPage />
+                            </SocketProvider>
+                        </ProtectedRoute>
+                    }
                 />
 
             </Routes>

@@ -1,8 +1,15 @@
 const jwt = require("jsonwebtoken");
+const cookie = require("cookie");
 
 const protectSocket = (socket, next) => {
     try {
-        const token = socket.handshake.auth?.token || socket.handshake.query?.token;
+        const rawCookies = socket.handshake.headers.cookie;
+        const parsedCookies = cookie.parse(rawCookies || "");
+
+        
+        const token = socket.handshake.auth?.token || 
+                      socket.handshake.query?.token || 
+                      parsedCookies.token; 
 
         if (!token) {
             return next(new Error("Not authorized, no token"));
