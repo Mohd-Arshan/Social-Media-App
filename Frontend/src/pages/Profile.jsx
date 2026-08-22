@@ -3,10 +3,10 @@ import {useParams} from 'react-router-dom';
 import {apiFetch} from '../services/api';
 import {useAuth} from '../context/AuthContext';
 import Posts from '../components/posts';
+import useFollowUser from '../context/follow';
 
 export default function Profile() {
     const { id } = useParams();
-
     const { user } = useAuth();
 
     const [profile, setProfile] = useState(null);
@@ -14,10 +14,20 @@ export default function Profile() {
     const [error, setError] = useState(null);
     const [me, setMe] = useState(false);
 
-    
+    const { followed, setFollowed, loading: followLoading, error: followError, toggleFollow } = useFollowUser();
 
     useEffect(() => {
-        if(id === user?.id) {
+        if (profile && profile.followers && user?._id) {
+            setFollowed(profile.followers.includes(user._id));
+        }
+    }, [profile, user, setFollowed]);
+     
+    const handleFollowClick = async ({userToFollowId}) => {
+        await toggleFollow({userToFollowId});
+    }
+
+    useEffect(() => {
+        if(id === user?._id) {
             setMe(true);
         }
         else {
@@ -59,6 +69,15 @@ export default function Profile() {
                             )}
                             <h1>{profile.username}</h1>
                             <p>{profile.bio}</p>
+                        </div>
+                        <div className="follow-button-container">
+                            <button
+                                className={`follow-button ${followed ? 'unfollow' : 'follow'}`}
+                                onClick={() => handleFollowClick({userToFollowId: profile._id})}
+                            >
+                                {followLoading ? 'Processing...' : (followed ? 'Unfollow' : 'Follow')}
+                            </button>
+                            {followError && <p className="error-message">{followError}</p>}
                         </div>
                         <div className="profile-posts">
                             <Posts userId={id} />   

@@ -15,6 +15,7 @@ export default function getRecommendedPosts (){
                 if(!data){
                     throw new Error('No data received from the server');
                 }
+                console.log("Recommended posts data:", data);
                 setPosts(data);
             }   
             catch (error) {
@@ -40,7 +41,7 @@ export default function getRecommendedPosts (){
                             <li key={post._id}>
 
                                 <div className= "post-image-container">
-                                    <img src={post.image} alt={post.caption} />
+                                    <img src={post.image} alt={post.title} />
                                 </div>
 
                                 <div className= "post-image-data-container">

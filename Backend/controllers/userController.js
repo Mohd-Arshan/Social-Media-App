@@ -26,10 +26,13 @@ const getRecommendedProfiles = async (req, res) => {
             return res.status(404).json({ message: "Current user not found" });
         }
 
-        const recommendedProfiles = await User.find({
-            _id: { $ne: currentUser._id }, // Exclude the current user
-            _id: { $nin: currentUser.following } // Exclude users already followed by the current user
-        }).select('-password'); // Exclude password field
+        const recommendedProfiles = await User.find({ 
+            _id: { 
+                $ne: currentUser._id, 
+                $nin: currentUser.following 
+            }  
+        }).select('-password');
+
 
         res.status(200).json(recommendedProfiles);
     }
