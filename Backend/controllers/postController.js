@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 
 const createPost = async (req, res) => {
   try {
-    const {imageURL,...rest} = req.body;
+    const {image: imageURL,...rest} = req.body;
     const userId = req.user.id;
+
+    console.log("Extracted imageURL:", imageURL); // <-- ADD THIS LOG
     
     if(!imageURL){
       return res.status(400).json({message: "Image URL is required"});
@@ -117,9 +119,10 @@ const getRecommendedPosts = async (req, res) => {
       return res.status(404).json({ message: "Current user not found" });
     }
 
+    //get all the posts from all users except the current user
     const recommendedPosts = await post.find({
-      userId: { $in: currentUser.following } // Get posts from users the current user is following
-    }).sort({ createdAt: -1 }); // Sort by most recent
+      userId: { $ne: currentUser._id }
+    });
 
     res.status(200).json(recommendedPosts);
   } 

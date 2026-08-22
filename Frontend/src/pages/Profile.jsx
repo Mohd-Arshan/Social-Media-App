@@ -4,6 +4,7 @@ import {apiFetch} from '../services/api';
 import {useAuth} from '../context/AuthContext';
 import Posts from '../components/posts';
 import useFollowUser from '../context/follow';
+import CreatePost from '../components/createPost';
 
 export default function Profile() {
     const { id } = useParams();
@@ -13,6 +14,7 @@ export default function Profile() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [me, setMe] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { followed, setFollowed, loading: followLoading, error: followError, toggleFollow } = useFollowUser();
 
@@ -50,7 +52,7 @@ export default function Profile() {
             }
         }
         fetchProfile();
-    }, [id]);
+    }, [id, user?._id]);
 
     return (
         <div>
@@ -89,8 +91,9 @@ export default function Profile() {
                             <img src={profile.profile_picture} alt={`${profile.username}'s avatar`} />
                             <h1>{profile.username}</h1>
                             <p>{profile.bio}</p>
-                            <button>Edit Profile</button>
-                            <button>Create Post</button>
+                            <button onClick>Edit Profile</button>
+                            <button onClick={() => setIsModalOpen(true)}>Create Post</button>
+                            {isModalOpen && <CreatePost onClose={() => setIsModalOpen(false)} />}
                         </div>
                         <div className="profile-posts">
                             <Posts userId={id} />
