@@ -1,0 +1,378 @@
+/* =========================================
+   SOCKETRY - MID FEED
+   ========================================= */
+
+.mid-feed {
+    width: 100%;
+}
+
+
+/* =========================================
+   RECOMMENDED POSTS CONTAINER
+   ========================================= */
+
+.recommended-posts {
+    width: 100%;
+}
+
+.recommended-posts h2 {
+    margin: 0 0 18px;
+
+    color: #1d1646;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    letter-spacing: -0.4px;
+}
+
+
+/* =========================================
+   POST LIST
+   ========================================= */
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* =========================================
+   POST CARD
+   ========================================= */
+
+.post-item {
+    width: 100%;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #edeff0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 14px rgba(29, 22, 70, 0.04);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.post-item:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 28px rgba(29, 22, 70, 0.08);
+}
+
+
+/* =========================================
+   POST IMAGE
+   ========================================= */
+
+.post-image-container {
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    background: #e8eaf7;
+}
+
+.post-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.35s ease;
+}
+
+.post-item:hover .post-image {
+    transform: scale(1.025);
+}
+
+
+/* =========================================
+   POST DETAILS
+   ========================================= */
+
+.post-details {
+    padding: 18px 20px 20px;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.post-title {
+    margin: 0 0 7px;
+
+    color: #191b1c;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    letter-spacing: -0.25px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+   ========================================= */
+
+.post-description {
+    margin: 0 0 14px;
+
+    color: #7b8285;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   AUTHOR
+   ========================================= */
+
+.post-details .profile-link {
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 16px;
+
+    text-decoration: none;
+}
+
+.post-details .profile-link p {
+    margin: 0;
+
+    color: #4b49b4;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+.post-details .profile-link:hover p {
+    color: #2c8cd4;
+}
+
+
+/* =========================================
+   LIKE AREA
+   ========================================= */
+
+.like-button-container {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid #edeff0;
+}
+
+
+/* =========================================
+   LIKE BUTTON
+   ========================================= */
+
+.like-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.2s ease;
+}
+
+
+/* Empty heart */
+.heart-icon {
+    font-size: 29px;
+    line-height: 1;
+
+    color: #7b8285;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Hover */
+.like-button:hover {
+    background: #f5f5fb;
+
+    transform: scale(1.08);
+}
+
+.like-button:hover .heart-icon {
+    color: #ca5fa3;
+
+    transform: scale(1.08);
+}
+
+
+/* Liked */
+.like-button.unlike .heart-icon {
+    color: #ca5fa3;
+
+    animation: heart-pop 0.25s ease;
+}
+
+
+/* Liked hover */
+.like-button.unlike:hover {
+    background: #efcadf;
+}
+
+.like-button.unlike:hover .heart-icon {
+    color: #9c487e;
+}
+
+
+/* Click animation */
+.like-button:active {
+    transform: scale(0.9);
+}
+
+
+/* Loading */
+.like-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* Heart animation */
+@keyframes heart-pop {
+    0% {
+        transform: scale(0.7);
+    }
+
+    60% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   LOADING
+   ========================================= */
+
+.recommended-posts > p {
+    margin: 20px 0;
+
+    color: #7b8285;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   EMPTY FEED
+   ========================================= */
+
+.post-list:empty::after {
+    content: "No recommended posts yet.";
+
+    display: block;
+
+    padding: 40px 20px;
+
+    border: 1px dashed #c2c9cc;
+    border-radius: 14px;
+
+    color: #7b8285;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1100px) {
+    .post-details {
+        padding: 16px;
+    }
+
+    .post-title {
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+    .post-list {
+        gap: 14px;
+    }
+
+    .post-item {
+        border-radius: 12px;
+    }
+
+    .post-image-container {
+        aspect-ratio: 1 / 1;
+    }
+
+    .post-details {
+        padding: 15px;
+    }
+
+    .post-description {
+        font-size: 13px;
+    }
+}

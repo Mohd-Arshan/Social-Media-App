@@ -1,0 +1,434 @@
+/* =========================================
+   SOCKETRY — RIGHT SIDEBAR
+   ========================================= */
+
+.right-sidebar {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* =========================================
+   PROFILE CARD
+   ========================================= */
+
+.sidebar-profile {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px;
+
+    overflow: hidden;
+
+    text-decoration: none;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f5f5fb 100%
+    );
+
+    border: 1px solid #edeff0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 18px rgba(29, 22, 70, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.sidebar-profile::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: linear-gradient(
+        180deg,
+        #1d1646,
+        #4b49b4,
+        #2c8cd4
+    );
+}
+
+.sidebar-profile:hover {
+    transform: translateY(-2px);
+
+    border-color: #cacbec;
+
+    box-shadow:
+        0 10px 25px rgba(29, 22, 70, 0.09);
+}
+
+
+/* =========================================
+   PROFILE AVATAR
+   ========================================= */
+
+.sidebar-profile-avatar {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    padding: 2px;
+
+    background: linear-gradient(
+        135deg,
+        #1d1646,
+        #4b49b4,
+        #ca5fa3
+    );
+
+    box-sizing: border-box;
+
+    transition: transform 0.25s ease;
+}
+
+.sidebar-profile:hover .sidebar-profile-avatar {
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   PROFILE INFORMATION
+   ========================================= */
+
+.sidebar-profile-info {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.sidebar-profile-name {
+    overflow: hidden;
+
+    color: #191b1c;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar-profile-label {
+    margin-top: 3px;
+
+    color: #7b8285;
+
+    font-size: 12px;
+
+    transition: color 0.2s ease;
+}
+
+.sidebar-profile:hover .sidebar-profile-label {
+    color: #4b49b4;
+}
+
+
+/* =========================================
+   ACTION BUTTON
+   ========================================= */
+
+.sidebar-action {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 14px;
+
+    border: 1px solid #edeff0;
+    border-radius: 13px;
+
+    background: #ffffff;
+
+    color: #383b3d;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        color 0.2s ease;
+}
+
+.sidebar-action:hover {
+    transform: translateY(-2px);
+
+    border-color: #a2a1de;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f5f5fb
+    );
+
+    color: #4b49b4;
+
+    box-shadow:
+        0 7px 20px rgba(29, 22, 70, 0.07);
+}
+
+.sidebar-action:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   ICON CONTAINER
+   ========================================= */
+
+.sidebar-action-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #f5f5fb;
+
+    color: #4b49b4;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sidebar-action:hover .sidebar-action-icon {
+    background: #e8eaf7;
+
+    color: #2c8cd4;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   ACTION TEXT
+   ========================================= */
+
+.sidebar-action-text {
+    font-size: 14px;
+    font-weight: 650;
+}
+
+
+/* =========================================
+   CREATE POST
+   ========================================= */
+
+.create-post-action {
+    position: relative;
+
+    overflow: hidden;
+
+    border: none;
+
+    background: linear-gradient(
+        135deg,
+        #1d1646 0%,
+        #4b49b4 55%,
+        #2c8cd4 100%
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 22px rgba(75, 73, 180, 0.25);
+}
+
+
+/* Decorative glow */
+.create-post-action::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -35px;
+    top: -45px;
+
+    border-radius: 50%;
+
+    background: rgba(202, 95, 163, 0.3);
+
+    filter: blur(12px);
+
+    transition:
+        transform 0.3s ease;
+}
+
+.create-post-action:hover::before {
+    transform: scale(1.4);
+}
+
+
+/* Keep content above decoration */
+
+.create-post-action .sidebar-action-icon,
+.create-post-action .sidebar-action-text {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* Create icon */
+
+.create-post-action .sidebar-action-icon {
+    background: rgba(255, 255, 255, 0.15);
+
+    color: #ffffff;
+}
+
+.create-post-action:hover {
+    border: none;
+
+    background: linear-gradient(
+        135deg,
+        #3c3082 0%,
+        #5d4cc3 50%,
+        #2c8cd4 100%
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 11px 28px rgba(75, 73, 180, 0.32);
+}
+
+.create-post-action:hover .sidebar-action-icon {
+    background: rgba(255, 255, 255, 0.2);
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   LOGOUT
+   ========================================= */
+
+.logout-action {
+    margin-top: 4px;
+
+    color: #6d3057;
+}
+
+.logout-action .sidebar-action-icon {
+    background: #efcadf;
+
+    color: #9c487e;
+}
+
+.logout-action:hover {
+    border-color: #e194c2;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #efcadf
+    );
+
+    color: #6d3057;
+
+    box-shadow:
+        0 6px 18px rgba(202, 95, 163, 0.12);
+}
+
+.logout-action:hover .sidebar-action-icon {
+    background: #e194c2;
+
+    color: #6d3057;
+}
+
+
+/* =========================================
+   MODAL LAYER
+   ========================================= */
+
+.right-sidebar :global(.create-post-modal) {
+    z-index: 1000;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1100px) {
+    .sidebar-profile {
+        padding: 13px;
+    }
+
+    .sidebar-profile-avatar {
+        width: 43px;
+        height: 43px;
+    }
+
+    .sidebar-action {
+        padding: 11px 12px;
+    }
+
+    .sidebar-action-icon {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+    .right-sidebar {
+        gap: 8px;
+    }
+
+    .sidebar-profile {
+        border-radius: 12px;
+    }
+
+    .sidebar-action {
+        border-radius: 11px;
+    }
+}

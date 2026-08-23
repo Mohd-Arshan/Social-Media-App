@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
@@ -7,6 +6,8 @@ import Login from "./pages/Login";
 import Interface from "./pages/Interface";
 import Profile from "./pages/Profile";
 import ChatPage from "./pages/ChatPage";
+import Inbox from "./pages/Inbox";
+import CreatePost from "./components/createPost";
 
 // Components
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -20,6 +21,16 @@ function App() {
         <AuthProvider>
         <BrowserRouter>
             <Routes>
+                <Route 
+                  path="/" 
+                  element={<Login />} 
+                />
+
+                <Route 
+                  path="/register" 
+                  element={<Register />} 
+                />
+
                 <Route 
                   path="/register" 
                   element={<Register />} 
@@ -42,6 +53,20 @@ function App() {
                 <Route 
                     path="profile/:id"
                     element={<Profile/>}
+                />
+
+                <Route 
+                    path="create-post"
+                    element={<CreatePost/>}
+                />
+
+                <Route 
+                    path="inbox"
+                    element={
+                        <ProtectedRoute>
+                            <Inbox />
+                        </ProtectedRoute>
+                    }
                 />
 
                 <Route 

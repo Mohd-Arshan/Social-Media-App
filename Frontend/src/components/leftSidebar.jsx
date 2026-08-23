@@ -1,11 +1,11 @@
-import {useAuth} from "../context/AuthContext";
-import {useNavigate, Link} from "react-router-dom";
+import "../styles/LeftSidebar.css";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiFetch } from "../services/api";
 import useFollowUser from "../context/follow";
 
 
-function ProfileCard({profile}){
+function ProfileCard({ profile }) {
     const { followed, loading, error, toggleFollow } = useFollowUser();
 
     const handleFollowClick = async () => {
@@ -13,19 +13,41 @@ function ProfileCard({profile}){
     };
 
     return (
-        <li key={profile.id} className="profile-item">
-            <Link to={`/profile/${profile._id}`} className="profile-link">
-                <img src={profile.profile_picture} alt={`${profile.username}'s avatar`} className="profile-avatar" />
-                <span className="profile-username">{profile.username}</span>
-            </Link> 
+        <li className="profile-item">
+            <Link
+                to={`/profile/${profile._id}`}
+                className="profile-link"
+            >
+                <img
+                    src={profile.profile_picture}
+                    alt={`${profile.username}'s avatar`}
+                    className="profile-avatar"
+                />
+
+                <span className="profile-username">
+                    {profile.username}
+                </span>
+            </Link>
+
             <div className="follow-button-container">
                 <button
-                    className={`follow-button ${followed ? 'unfollow' : 'follow'}`}
+                    className={`follow-button ${followed ? "unfollow" : "follow"
+                        }`}
                     onClick={handleFollowClick}
+                    disabled={loading}
                 >
-                    {loading ? 'Processing...' : (followed ? 'Unfollow' : 'Follow')}    
+                    {loading
+                        ? "Processing..."
+                        : followed
+                            ? "Unfollow"
+                            : "Follow"}
                 </button>
-                {error && <p className="error-message">{error}</p>}
+
+                {error && (
+                    <p className="error-message">
+                        {error}
+                    </p>
+                )}
             </div>
         </li>
     );
@@ -42,7 +64,7 @@ export default function LeftSidebar() {
     const handleButtonClick = async (userToFollowId) => {
         await followObj.toggleFollow({ userToFollowId });
     };
-    
+
 
     useEffect(() => {
         async function fetchRecommendProfiles() {

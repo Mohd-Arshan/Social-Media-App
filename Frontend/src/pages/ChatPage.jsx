@@ -11,36 +11,40 @@ step 8 : Display sent message in chat window
 NOTE : Revicer ID is not required as it is already present in the Room ID.
 */
 
-import React, { useEffect, useState } from "react";
+import "../styles/ChatPage.css";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {useAuth} from '../context/AuthContext';
-import { io } from "socket.io-client";
+import { useAuth } from '../context/AuthContext';
 
 import { apiFetch } from "../services/api";
 import { useSocket } from "../context/SocketContext";
 
 const ChatPage = () => {
     const { user } = useAuth();
-    const { socket }= useSocket();
+    const { socket } = useSocket();
     const { senderId } = useParams();
+
 
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [roomId, setRoomId] = useState(null);
+    const [senderData, setSenderData] = useState({
+        username: "",
+        profilePicture: "",
+    });
 
     useEffect(() => {
-        try{
+        try {
             if (!user || !senderId) {
                 throw new Error("User or senderId is not defined");
             }
             // Step 3: Get Room ID from End-Point by Sender ID
             const fetchRoomId = async () => {
-                try{
+                try {
                     const data = await apiFetch(`/conversation/getRoomId/${senderId}`);
-                    if(!data){
+                    if (!data) {
                         throw new Error('No data received from the server');
                     }
-                    console.log("Fetched Room ID:", data.roomId);
                     setRoomId(data.roomId);
                 }
                 catch (error) {
@@ -53,6 +57,33 @@ const ChatPage = () => {
             console.error("Error fetching room ID:", error);
         }
     }, [user, senderId]);
+
+
+    useEffect(() => {
+        if (!senderId) return;
+
+        // Fetch sender data (username and profile picture) from the API
+        const fetchSenderData = async () => {
+            try {
+                const data = await apiFetch(`/user/Profile/${senderId}`);
+                if (!data) {
+                    throw new Error('No data received from the server');
+                }
+
+                console.log("Fetched sender data:", data);
+                setSenderData({
+                    username: data.username,
+                    profilePicture: data.profilePicture,
+                });
+            }
+            catch (error) {
+                console.error("Error fetching sender data:", error);
+            }
+        };
+        fetchSenderData();
+    }, [senderId]);
+
+
 
     useEffect(() => {
         if (!roomId) return;
@@ -75,7 +106,7 @@ const ChatPage = () => {
         const fetchMessages = async () => {
             try {
                 const data = await apiFetch(`/conversation/getMessages/${roomId}`);
-                if(!data){
+                if (!data) {
                     throw new Error('No data received from the server');
                 }
                 setMessages(data.messages);
@@ -88,9 +119,9 @@ const ChatPage = () => {
     }, [roomId]);
 
     const handleSendMessage = async () => {
-        if (!newMessage.trim()) return; 
+        if (!newMessage.trim()) return;
 
-        if(!socket || !socket.connected){
+        if (!socket || !socket.connected) {
             console.error("Socket is not connected");
             return;
         }
@@ -109,7 +140,7 @@ const ChatPage = () => {
                     console.log("Message sent successfully:", response.message);
                 }
             });
-                
+
             setNewMessage("");
         }
         catch (error) {
@@ -123,31 +154,47 @@ const ChatPage = () => {
 
 
     return (
-        <div>
-            <h1>
-                Chat with {senderId}
-            </h1>
+        <div className="chat-page">
+            <div className="chat-header">
+                <img
+                    src={senderData.profilePicture}
+                    alt={`${senderData.username}'s profile`}
+                    className="profile-picture"
+                />
+
+                <h2>{senderData.username}</h2>
+            </div>
 
             <div className="chat-window">
                 {messages.map((message) => (
-                    <div key={message._id} className={`message ${String(message.sender) === String(user._id) ? 'sent' : 'received'}`}>
+                    <div
+                        key={message._id}
+                        className={`message ${String(message.sender) === String(user._id)
+                                ? "sent"
+                                : "received"
+                            }`}
+                    >
                         <p>{message.content}</p>
                     </div>
                 ))}
             </div>
+
             <div className="message-input">
                 <input
                     type="text"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
+                        if (e.key === "Enter") {
                             handleSendMessage();
                         }
                     }}
                     placeholder="Type a message..."
                 />
-                <button onClick={handleSendMessage}>Send</button>
+
+                <button onClick={handleSendMessage}>
+                    Send
+                </button>
             </div>
         </div>
     );
