@@ -69,4 +69,31 @@ const getMessages = async (req, res) => {
 
 };
 
-module.exports = { getRoomId, getMessages };
+// Function to get chat partners for the authenticated user
+// This function retrieves the list of users that the authenticated user has conversations with
+const getChatPartners = async (req, res) => {
+    const userId = req.user.id; // Assuming you have the authenticated user's ID in req.user
+
+    try {
+        // Find conversations where the user is a participant
+        const conversations = await Conversation.find({ participants: userId });
+
+        // Extract the other participant's IDs from the conversations
+        const chatPartners = conversations.map(conversation => {
+            const otherParticipantId = conversation.participants.find(participantId => participantId.toString() !== userId);
+            return otherParticipantId;
+        });
+
+        // Fetch user details for the chat partners
+        const chatPartnerDetails = await User.find({ _id: { $in: chatPartners } }).select('username profile_picture');
+
+        res.status(200).json({ chatPartners: chatPartnerDetails });
+    }
+    catch (error) {
+        console.error("Error getting chat partners:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
+module.exports = { getRoomId, getMessages, getChatPartners };

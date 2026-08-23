@@ -1,10 +1,9 @@
-import { useAuth } from "../context/AuthContext";
+import "../styles/Interface.css";
 import LeftSidebar  from "../components/leftSidebar";
 import MidFeed from "../components/midFeed";
 import RightSidebar from "../components/rightSidebar";
 
 function Interface() {
-    const { user, logout } = useAuth();
 
     return (
         <div className="interface-container">

@@ -1,8 +1,10 @@
-import { useState  } from "react";
+import "../styles/Auth.css";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../services/api";
 
-function Register(){
+
+function Register() {
 
     const navigate = useNavigate();
 
@@ -15,8 +17,8 @@ function Register(){
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    
-    function handleChange (e) {
+
+    function handleChange(e) {
         setForm({
             ...form,
             [e.target.name]: e.target.value
@@ -30,62 +32,95 @@ function Register(){
         setError("");
 
         try {
-            await apiFetch("/auth/register",{
+            await apiFetch("/auth/register", {
                 method: "POST",
                 body: JSON.stringify(form)
             });
 
             navigate("/login");
         }
-        catch(error){
+        catch (error) {
             setError(error.message);
         }
-        finally{
+        finally {
             setLoading(false);
         }
     }
 
-            return (
-            <div>
-                <h1>Register</h1>
-                {error && <p style={{color: "red"}}>{error}</p>}
+    return (
+        <div className="auth-page">
+            <div className="auth-card">
+                <div className="auth-brand">
+                    <div className="brand-icon">S</div>
+                    <h1>Socketry</h1>
+                </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="username">Username:</label>
-                        <input 
-                            type="text" 
-                            id="username" 
-                            name="username" 
-                            value={form.username} 
-                            onChange={handleChange} 
+                <div className="auth-header">
+                    <h2>Create your account</h2>
+                    <p>Join Socketry and connect with people.</p>
+                </div>
+
+                {error && <p className="auth-error">{error}</p>}
+
+                <form onSubmit={handleSubmit} className="auth-form">
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={form.username}
+                            onChange={handleChange}
+                            placeholder="Enter your username"
                         />
-                        <br />
-                        <label htmlFor="email">Email:</label>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
                         <input
                             type="email"
                             id="email"
                             name="email"
                             value={form.email}
                             onChange={handleChange}
+                            placeholder="you@example.com"
                         />
-                        <br />
-                        <label htmlFor="password">Password:</label>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
                         <input
                             type="password"
                             id="password"
                             name="password"
                             value={form.password}
                             onChange={handleChange}
+                            placeholder="Create a password"
                         />
                     </div>
-                    <button type="submit" disabled={loading}>
-                        {loading ? "Registering..." : "Register"}
+
+                    <button
+                        type="submit"
+                        className="auth-submit"
+                        disabled={loading}
+                    >
+                        {loading ? "Creating account..." : "Create account"}
                     </button>
                 </form>
-                <button onClick={() => navigate("/login")}>Already have an account? Login</button>
+
+                <div className="auth-footer">
+                    <span>Already have an account?</span>
+                    <button
+                        type="button"
+                        className="auth-link"
+                        onClick={() => navigate("/login")}
+                    >
+                        Login
+                    </button>
+                </div>
             </div>
-        )
+        </div>
+    );
 }
 
 
