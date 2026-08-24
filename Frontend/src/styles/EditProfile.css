@@ -1,0 +1,494 @@
+/* =========================================
+   SOCKETRY - EDIT PROFILE
+   ========================================= */
+
+.edit-profile-page {
+    min-height: 100vh;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 55px 20px 70px;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(202, 95, 163, 0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(44, 140, 212, 0.14),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #f5f5fb,
+            #f8f5fa
+        );
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.edit-profile-card {
+    position: relative;
+
+    width: min(650px, 100%);
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    border: 1px solid #e4e3ed;
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 20px 60px rgba(29, 22, 70, 0.12);
+}
+
+
+/* =========================================
+   GRADIENT TOP
+   ========================================= */
+
+.edit-profile-card::before {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 6px;
+
+    background: linear-gradient(
+        90deg,
+        #1d1646,
+        #4b49b4,
+        #2c8cd4,
+        #ca5fa3
+    );
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.edit-profile-header {
+    position: relative;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 30px 32px 25px;
+
+    border-bottom: 1px solid #eeeeF3;
+
+    overflow: hidden;
+}
+
+
+.edit-profile-eyebrow {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #4b49b4;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.edit-profile-header h1 {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0;
+
+    color: #1d1646;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+.edit-profile-header p {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 7px 0 0;
+
+    color: #7b8285;
+
+    font-size: 13px;
+}
+
+
+/* Decorative gradient circle */
+
+.edit-profile-header-decoration {
+    position: absolute;
+
+    right: -35px;
+    top: -60px;
+
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #4b49b4,
+        #2c8cd4,
+        #ca5fa3
+    );
+
+    opacity: 0.13;
+
+    filter: blur(2px);
+}
+
+
+/* =========================================
+   ERROR
+   ========================================= */
+
+.edit-profile-error {
+    margin: 22px 32px 0;
+
+    padding: 12px 14px;
+
+    border: 1px solid #e5b8cf;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #efcadf,
+        #f5e2ed
+    );
+
+    color: #6d3057;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.edit-profile-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 21px;
+
+    padding: 28px 32px 32px;
+}
+
+
+/* =========================================
+   FORM GROUP
+   ========================================= */
+
+.edit-form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.edit-form-group label {
+    color: #383b3d;
+
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================
+   LABEL ROW
+   ========================================= */
+
+.edit-label-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.edit-label-row span {
+    color: #9b9fa3;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   INPUTS
+   ========================================= */
+
+.edit-form-group input,
+.edit-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    border: 1px solid #dfe0e7;
+
+    border-radius: 11px;
+
+    background: #fafaff;
+
+    color: #25282a;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.edit-form-group input {
+    height: 46px;
+
+    padding: 0 14px;
+}
+
+
+.edit-form-group textarea {
+    min-height: 115px;
+
+    padding: 13px 14px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+.edit-form-group input::placeholder,
+.edit-form-group textarea::placeholder {
+    color: #a6aaae;
+}
+
+
+/* =========================================
+   INPUT FOCUS
+   ========================================= */
+
+.edit-form-group input:focus,
+.edit-form-group textarea:focus {
+    border-color: #4b49b4;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(75, 73, 180, 0.11);
+}
+
+
+/* =========================================
+   ACTIONS
+   ========================================= */
+
+.edit-profile-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 8px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #eeeeF3;
+}
+
+
+/* =========================================
+   CANCEL
+   ========================================= */
+
+.edit-profile-cancel {
+    min-width: 105px;
+
+    height: 44px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dfe0e7;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #555b60;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.edit-profile-cancel:hover {
+    border-color: #c9c8dc;
+
+    background: #f5f5fb;
+
+    color: #4b49b4;
+}
+
+
+/* =========================================
+   SAVE BUTTON
+   ========================================= */
+
+.edit-profile-submit {
+    min-width: 145px;
+
+    height: 44px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #1d1646,
+        #4b49b4,
+        #2c8cd4
+    );
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 20px rgba(75, 73, 180, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.edit-profile-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(75, 73, 180, 0.34);
+}
+
+
+.edit-profile-submit:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .edit-profile-page {
+        padding: 25px 12px 45px;
+    }
+
+
+    .edit-profile-card {
+        border-radius: 17px;
+    }
+
+
+    .edit-profile-header {
+        padding: 24px 20px 21px;
+    }
+
+
+    .edit-profile-header h1 {
+        font-size: 24px;
+    }
+
+
+    .edit-profile-form {
+        gap: 18px;
+
+        padding: 22px 20px 24px;
+    }
+
+
+    .edit-profile-error {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
+    .edit-profile-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+
+    .edit-profile-cancel,
+    .edit-profile-submit {
+        width: 100%;
+    }
+}

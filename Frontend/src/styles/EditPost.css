@@ -1,0 +1,486 @@
+/* =========================================
+   SOCKETRY - EDIT POST
+   ========================================= */
+
+.edit-post-page {
+    min-height: 100vh;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 55px 20px 70px;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(202, 95, 163, 0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(44, 140, 212, 0.14),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #f5f5fb,
+            #f8f5fa
+        );
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.edit-post-card {
+    position: relative;
+
+    width: min(600px, 100%);
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    border: 1px solid #e4e3ed;
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 20px 60px rgba(29, 22, 70, 0.12);
+}
+
+
+/* =========================================
+   GRADIENT TOP
+   ========================================= */
+
+.edit-post-card::before {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 6px;
+
+    background: linear-gradient(
+        90deg,
+        #1d1646,
+        #4b49b4,
+        #2c8cd4,
+        #ca5fa3
+    );
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.edit-post-header {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 30px 32px 25px;
+
+    border-bottom: 1px solid #eeeeF3;
+}
+
+
+.edit-post-eyebrow {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #4b49b4;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.edit-post-header h1 {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0;
+
+    color: #1d1646;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+.edit-post-header p {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 7px 0 0;
+
+    color: #7b8285;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   DECORATION
+   ========================================= */
+
+.edit-post-decoration {
+    position: absolute;
+
+    right: -45px;
+
+    top: -70px;
+
+    width: 170px;
+
+    height: 170px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #4b49b4,
+        #2c8cd4,
+        #ca5fa3
+    );
+
+    opacity: 0.13;
+}
+
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.edit-post-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+    padding: 28px 32px 32px;
+}
+
+
+/* =========================================
+   FORM GROUP
+   ========================================= */
+
+.edit-post-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.edit-post-group label {
+    color: #383b3d;
+
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================
+   LABEL ROW
+   ========================================= */
+
+.edit-post-label-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.edit-post-label-row span {
+    color: #9b9fa3;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   INPUT
+   ========================================= */
+
+.edit-post-group input,
+.edit-post-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    border: 1px solid #dfe0e7;
+
+    border-radius: 11px;
+
+    background: #fafaff;
+
+    color: #25282a;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.edit-post-group input {
+    height: 46px;
+
+    padding: 0 14px;
+}
+
+
+.edit-post-group textarea {
+    min-height: 130px;
+
+    padding: 13px 14px;
+
+    resize: vertical;
+
+    line-height: 1.55;
+}
+
+
+.edit-post-group input::placeholder,
+.edit-post-group textarea::placeholder {
+    color: #a6aaae;
+}
+
+
+/* =========================================
+   FOCUS
+   ========================================= */
+
+.edit-post-group input:focus,
+.edit-post-group textarea:focus {
+    border-color: #4b49b4;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(75, 73, 180, 0.11);
+}
+
+
+/* =========================================
+   ERROR
+   ========================================= */
+
+.edit-post-error {
+    margin-top: -5px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #e5b8cf;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #efcadf,
+        #f5e2ed
+    );
+
+    color: #6d3057;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   ACTIONS
+   ========================================= */
+
+.edit-post-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 5px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #eeeeF3;
+}
+
+
+/* =========================================
+   CANCEL
+   ========================================= */
+
+.edit-post-cancel {
+    min-width: 105px;
+
+    height: 44px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dfe0e7;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #555b60;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.edit-post-cancel:hover {
+    border-color: #c9c8dc;
+
+    background: #f5f5fb;
+
+    color: #4b49b4;
+}
+
+
+/* =========================================
+   UPDATE BUTTON
+   ========================================= */
+
+.edit-post-submit {
+    min-width: 135px;
+
+    height: 44px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #1d1646,
+        #4b49b4,
+        #2c8cd4
+    );
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 20px rgba(75, 73, 180, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.edit-post-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(75, 73, 180, 0.34);
+}
+
+
+.edit-post-submit:disabled {
+    opacity: 0.75;
+
+    cursor: default;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .edit-post-page {
+        padding: 25px 12px 45px;
+    }
+
+
+    .edit-post-card {
+        border-radius: 17px;
+    }
+
+
+    .edit-post-header {
+        padding: 24px 20px 21px;
+    }
+
+
+    .edit-post-header h1 {
+        font-size: 24px;
+    }
+
+
+    .edit-post-form {
+        gap: 18px;
+
+        padding: 22px 20px 24px;
+    }
+
+
+    .edit-post-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+
+    .edit-post-cancel,
+    .edit-post-submit {
+        width: 100%;
+    }
+}

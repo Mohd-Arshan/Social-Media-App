@@ -50,7 +50,7 @@ const getAllPosts = async (req, res) => {
 const updatePost = async (req, res) => {
   try {
     const { postId } = req.params;
-    const { imageURL, ...rest } = req.body;
+    const { image: imageURL, ...rest } = req.body;
     const userId = req.user.id;
 
     const postToUpdate = await post.findById(postId);
@@ -86,11 +86,11 @@ const deletePost = async (req, res) => {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    if (postToDelete.userId !== userId) {
+    if (postToDelete.userId.toString() !== userId.toString()) {
       return res.status(403).json({ message: "You are not authorized to delete this post" });
     }
 
-    await postToDelete.remove();
+    await postToDelete.deleteOne();
     res.status(200).json({ message: "Post deleted successfully" });
   }
     catch (error) {
@@ -132,6 +132,17 @@ const getRecommendedPosts = async (req, res) => {
 
 } 
 
+const getPostById = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const postData = await post.findById(postId);
+    if (!postData) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    res.status(200).json(postData);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+}
 
-
-module.exports = { createPost, getAllPosts, updatePost, deletePost, getRecommendedPosts, getPostsByUserId };
+module.exports = { createPost, getAllPosts, updatePost, deletePost, getRecommendedPosts, getPostsByUserId, getPostById };

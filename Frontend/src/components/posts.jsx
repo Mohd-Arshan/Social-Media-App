@@ -1,9 +1,12 @@
 import {useState, useEffect} from 'react';
 import {apiFetch} from '../services/api';
+import {useNavigate} from 'react-router-dom';
 import "../styles/Posts.css";
 
 
 export default function getPostsBy({ userId, isOwner = false }) {
+
+    const navigate = useNavigate();
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -49,21 +52,36 @@ export default function getPostsBy({ userId, isOwner = false }) {
 
     }, [userId]);
 
-    const handleEdit = (post) => {
-
-        setOpenMenu(null);
-        console.log("Edit post:", post);
-
-        //i have to implement the edit functionality here, maybe open a modal or redirect to an edit page
-        
-    };
 
     const handleDelete = async (postId) => {
 
         setOpenMenu(null);
-        console.log("Delete post:", postId);
 
-        // i have to implement the delete functionality here, maybe call an API to delete the post and then update the state
+        try {
+
+            const response = await apiFetch(
+                `/post/delete/${postId}`,
+                {
+                    method: "DELETE",
+                }
+            );
+
+            if (!response) {
+                throw new Error(
+                    "No response from the server"
+                );
+            }
+
+            setPosts((prevPosts) =>
+                prevPosts.filter((post) => post._id !== postId)
+            );
+
+        } catch (error) {
+
+            setError(error.message);
+
+        }
+
     };
 
     if (loading) {
@@ -164,10 +182,7 @@ export default function getPostsBy({ userId, isOwner = false }) {
 
                                         <div className="post-menu-dropdown">
 
-                                            <button
-                                                onClick={() =>
-                                                    handleEdit(post)
-                                                }
+                                            <button onClick={() => navigate(`/edit-post/${post._id}`)}
                                             >
                                                 Edit
                                             </button>

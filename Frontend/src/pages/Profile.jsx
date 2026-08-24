@@ -158,6 +158,13 @@ export default function Profile() {
                                         ? "Unfollow"
                                         : "Follow"
                                 }
+                            </button >
+
+                            <button  
+                                className="follow-button follow"
+                                onClick={() => navigate(`/chat/${profile._id}`)}
+                            >
+                                Message
                             </button>
 
                             {followError && (
@@ -174,10 +181,8 @@ export default function Profile() {
 
                             <div className="edit-profile-button-container">
                                 <button
-                                    onClick={() =>
-                                        alert(
-                                            "Edit profile functionality not implemented yet."
-                                        )
+                                    onClick={
+                                        () => navigate('/edit-profile')
                                     }
                                 >
                                     Edit Profile

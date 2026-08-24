@@ -8,6 +8,8 @@ import Profile from "./pages/Profile";
 import ChatPage from "./pages/ChatPage";
 import Inbox from "./pages/Inbox";
 import CreatePost from "./components/createPost";
+import EditPost from "./components/editPost";
+import EditProfile from "./pages/EditProfile";
 
 // Components
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -79,6 +81,25 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+
+                <Route 
+                    path="edit-post/:postId"
+                    element={
+                        <ProtectedRoute>
+                            <EditPost />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route 
+                    path="edit-profile"
+                    element={
+                        <ProtectedRoute>
+                            <EditProfile />
+                        </ProtectedRoute>
+                    }
+                />
+                
 
             </Routes>
         </BrowserRouter>
